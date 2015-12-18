@@ -34,7 +34,45 @@ let g:zv_added_files_type = {
 " go语言插件
 Bundle 'dgryski/vim-godef' 
 Bundle 'Blackrush/vim-gocode' 
+Bundle "cespare/vim-golang"
 Bundle 'majutsushi/tagbar'
+
+let g:godef_split=2
+let g:godef_same_file_in_same_window=1
+
+" 保存Go文件时,调用goimports对该文件排版并插入相应的imports语句
+"let g:gofmt_command="goimports"
+"autocmd BufWritePre *.go :Fmt 
+
+" Go語言按F8顯示當前文件下的函數等內容
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+	        \ 'p:package',
+	        \ 'i:imports:1',
+	        \ 'c:constants',
+	        \ 'v:variables',
+	        \ 't:types',
+	        \ 'n:interfaces',
+	        \ 'w:fields',
+	        \ 'e:embedded',
+	        \ 'm:methods',
+	        \ 'r:constructor',
+	        \ 'f:functions'
+	    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+	        \ 't' : 'ctype',
+	        \ 'n' : 'ntype'
+	    \ },
+    \ 'scope2kind' : {
+	        \ 'ctype' : 't',
+	        \ 'ntype' : 'n'
+	    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
 " 基础设置
 set number        " 设置行号
